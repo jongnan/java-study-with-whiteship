@@ -24,7 +24,7 @@ JVM의 구성 요소는 다음 그림과 같다.
 
 <p align="center"><img src="https://camo.githubusercontent.com/e8cafdece84756a4f7e0464861902f86c5cf65bd6496cfd8feab1ba0836cd7a9/68747470733a2f2f64322e6e617665722e636f6d2f636f6e74656e742f696d616765732f323031352f30362f68656c6c6f776f726c642d313233302d312e706e67" width=400></p>
 
-<p align="right">출처 : <a herf="https://d2.naver.com/helloworld/1230" taget="_blank">JVM Internal - NAVER D2</a></p>
+<p align="right"> 출처 : JVM Internal - NAVER D2(https://d2.naver.com/helloworld/1230)</p>
 
 JVM은 구성 요소를 크게 3가지로 분류 할 수 있다.
 
@@ -44,7 +44,8 @@ Class Loader는 몇가지 특징을 가지고 있다.
 
 <p align="center"><img src="https://camo.githubusercontent.com/ef7b4cfa8b297aafb6d019e1a3bab77c9fabebd9f72283259b651e6309ece779/68747470733a2f2f64322e6e617665722e636f6d2f636f6e74656e742f696d616765732f323031352f30362f68656c6c6f776f726c642d313233302d342e706e67" width=400></p>
 
-<p align="right">출처 : <a herf="https://d2.naver.com/helloworld/1230" taget="_blank">JVM Internal - NAVER D2</a></p>
+<p align="right"> 출처 : JVM Internal - NAVER D2(https://d2.naver.com/helloworld/1230)</p>
+
 
 런타임 데이터 영역은 JVM이 실행되면서 할당받은 메모리 영역이다.  
 위 그림과 같이 크게 6개의 영역으로 나뉠 수 있는데, 각 영역의 라이프 사이클이 다르다.  
