@@ -55,12 +55,12 @@ Java에서는 8개의 원시형 데이터 타입을 제공한다.
 또 선언시 바로 해당 변수를 초기화 할 수 있다.
 
 ```java
-int number;		// 선언
+int number;   // 선언
 number = 123; // 초기화
 
-int age = 20;	// 선언 및 초기화
+int age = 20; // 선언 및 초기화
 
-User user1 = new User("jongnan", 20);	// User 객체 타입 선언 및 초기화
+User user1 = new User("jongnan", 20); // User 객체 타입 선언 및 초기화
 ```
 
 만약, 선언만 하고 해당 값을 사용한다면 어떻게 될까?  
@@ -143,9 +143,9 @@ Java는 C/C++와 동일하게 **Lexical Scope**를 따르고 있다.
 
   ```java
   public class Human {
-  	static String type = "표유류";	 // 클래스 변수
-    String name;									// 인스턴스 변수
-    int age;											// 인스턴스 변수
+    static String type = "표유류";  // 클래스 변수
+    String name;                  // 인스턴스 변수
+    int age;                      // 인스턴스 변수
   }
   ```
 
@@ -164,7 +164,7 @@ Java는 C/C++와 동일하게 **Lexical Scope**를 따르고 있다.
     int age;
     
     boolean isAdult() {
-  		int korBase = 20;					// 지역 변수
+      int korBase = 20;       // 지역 변수
       return age >= korBase;
     }
   }
@@ -174,7 +174,7 @@ Java는 C/C++와 동일하게 **Lexical Scope**를 따르고 있다.
 
   ```java
   public class Main {
-  	static int a = 1;
+    static int a = 1;
     void method() {
       int a = 5;
       System.out.println(a);
@@ -189,13 +189,13 @@ Java는 C/C++와 동일하게 **Lexical Scope**를 따르고 있다.
 
   ```java
   public class Main {
-    // method_A 지역
-  	void method_A() {
+   // method_A 지역
+    void method_A() {
       int a = 5;
     }
     // method_B 지역
     void method_B() {
-      System.out.println(a);	// 접근 불가(에러 발생)
+      System.out.println(a); // 접근 불가(에러 발생)
     }
   }
   ```
