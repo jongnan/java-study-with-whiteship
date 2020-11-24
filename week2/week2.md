@@ -239,8 +239,8 @@ Java에서는 타입 변환은 다음과 같이 크게 두 가지 종류로 나�
 
   ```java
   int num = 100;
-  double doubleNum = num;				// 100.0
-  double sum = num + doubleNum; // 200.0
+  double doubleNum = num;        // 100.0
+  double sum = num + doubleNum;  // 200.0
   ```
 
   위와 같이 `int`형의 변수를 `double`형의 변수에 대입하거나 산술 시에 에러 없이 가능하고 출력 시에 형 변환이 일어난 것을 볼 수 있다.  
@@ -264,8 +264,8 @@ Java에서는 타입 변환은 다음과 같이 크게 두 가지 종류로 나�
   ```java
   int a = 3;
   int b = 5;
-  double div1 = a / b;					// 0.0
-  double div2 = (double)a / b;	// 0.6
+  double div1 = a / b;         // 0.0
+  double div2 = (double)a / b; // 0.6
   ```
 
   여기서 주의 할 점은 `div1`과 `div2` 의 차이에 있다.
@@ -296,11 +296,11 @@ var str = "hello!!";
 이 외에도 여러 상황에서 에러가 발생할 수 있다.
 
 ```java
-var lists = new ArrayList<>();					// Error : type 추론 실패
-var empty = null;												// Error : null 허용 X
-public var num = 10;										// Error : 로컬 변수만 허용
-var str = (String s) -> s.length() > 5;	// Error : 람다식 불가
-var arr = {1,2,3,4};										// Error : 배열 리터럴 불가
+var lists = new ArrayList<>();           // Error : type 추론 실패
+var empty = null;                        // Error : null 허용 X
+public var num = 10;                     // Error : 로컬 변수만 허용
+var str = (String s) -> s.length() > 5;  // Error : 람다식 불가
+var arr = {1,2,3,4};                     // Error : 배열 리터럴 불가
 ```
 
 <br>
@@ -349,9 +349,9 @@ var arr = {1,2,3,4};										// Error : 배열 리터럴 불가
 * #### 선언
 
   ```java
-  int[][] intArr;			// 1) 
-  long [][]longArr;		// 2) Error
-  String strArr[][];	// 3) Error
+  int[][] intArr;    // 1) 
+  long [][]longArr;  // 2) Error
+  String strArr[][]; // 3) Error
   ```
 
   1차원 배열과는 다르게  `1)` 방식으로만 선언이 가능하다.
