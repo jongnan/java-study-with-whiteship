@@ -44,8 +44,8 @@
   > 이 값은 부동 소수점 연산에 의해 Overflow가 나거나  또는 0으로 나누는 부동 소수점 연산으로 생성된다.
 
   ```java
-  float n   =  10.0f / 0;			//  Infinity
-  float n2  = -10.0f / 0;			// -Infinity
+  float n   =  10.0f / 0;	//  Infinity
+  float n2  = -10.0f / 0;	// -Infinity
   double n3 =  10.0d / 0.0f;	//  Infinity
   ```
 
@@ -55,9 +55,9 @@
   > 이는 0을 0으로 나누거나, 0으로 나머지 연산시, 무한대 나누기 무한대 등의 상황에서 볼 수 있다.
 
   ```java
-  float n  = 0.0 / 0;						//NaN
-  float n2 = 10.0 % 0;					//NaN
-  float n3 = 0 * (1.0 / 0);			//NaN(0 * ∞)
+  float n  = 0.0 / 0;		//NaN
+  float n2 = 10.0 % 0;		//NaN
+  float n3 = 0 * (1.0 / 0);	//NaN(0 * ∞)
   float n4 = (1.0/0) / (1.0/0)	//NaN(∞ / ∞)
   ```
 
@@ -98,32 +98,32 @@
 [우 쉬프트]
 -----------부호 비트가 0일 때-----------
 00110000 >> 3
-   	↓				오른쪽으로 3만큼 이동
+   ↓		오른쪽으로 3만큼 이동
 XXX00110
-    ↓				X(새로운 비트)에 0을 채움
+   ↓		X(새로운 비트)에 0을 채움
 00000110
 
 -----------부호 비트가 1일 때-----------
 11110000 >> 3
-   	↓				오른쪽으로 3만큼 이동
+   ↓		오른쪽으로 3만큼 이동
 XXX11110
-    ↓				X(새로운 비트)에 1을 채움
+   ↓		X(새로운 비트)에 1을 채움
 11111110
 
 ------------------------------------
 11110000 >>> 3
-   	↓				오른쪽으로 3만큼 이동
+   ↓		오른쪽으로 3만큼 이동
 XXX11110
-    ↓				X(새로운 비트)에 0을 채움
+   ↓		X(새로운 비트)에 0을 채움
 00011110
 
 ====================================
 
 [좌 쉬프트]
 00001100 << 2
-   	↓				왼쪽으로 2만큼 이동
+   ↓		왼쪽으로 2만큼 이동
 001100XX
-    ↓				X(새로운 비트)에 0을 채움
+   ↓		X(새로운 비트)에 0을 채움
 00110000
 ```
 
@@ -167,10 +167,10 @@ public class main {
     Parent p = new Parent();
     Child c = new Child();
     
-    System.out.println(p instanceof Parent);		//true
-    System.out.println(p instanceof Child);			//false
-    System.out.println(c instanceof Child);			//true
-    System.out.println(c instanceof Parent);		//true
+    System.out.println(p instanceof Parent);	//true
+    System.out.println(p instanceof Child);	//false
+    System.out.println(c instanceof Child);	//true
+    System.out.println(c instanceof Parent);	//true
   }
 }
 ```
@@ -204,10 +204,10 @@ public class main {
 ```java
 int[] arr = new int[5];
 int[] arr2 = arr;
-System.out.println(arr[0]);		// 0
+System.out.println(arr[0]);	// 0
 System.out.println(arr2[0]);	// 0
 arr2[0] = 5;
-System.out.println(arr[0]);		// 5
+System.out.println(arr[0]);	// 5
 System.out.println(arr2[0]);	// 5
 ```
 
@@ -225,10 +225,10 @@ for(int i = 0; i < arr.length; i++) {
 // clone() 사용
 int[] arr2 = arr.clone();
 
-System.out.println(arr[0]);		// 0
+System.out.println(arr[0]);	// 0
 System.out.println(arr2[0]);	// 0
 arr2[0] = 5;
-System.out.println(arr[0]);		// 0
+System.out.println(arr[0]);	// 0
 System.out.println(arr2[0]);	// 5
 ```
 
@@ -285,12 +285,12 @@ interface Adder {
 
 class Calculator {
   public int excute(int num1, int num2, char op) {
-  	Adder adder = new Adder {
-    	@Override
-    	public int excute(int a, int b) {
-    		return a + b;
-   		}
-  	};
+    Adder adder = new Adder {
+      @Override
+      public int excute(int a, int b) {
+      	return a + b;
+      }
+    };
     if(op == '+') {
       return adder.excute(num1, num2);
     }
@@ -304,7 +304,7 @@ interface Adder {
 
 class Calculator {
   public int excute(int num1, int num2, char op) {
-  	Adder adder = (a, b) -> a + b;
+    Adder adder = (a, b) -> a + b;
     if(op == '+') {
       return adder.excute(num1, num2);
     }
@@ -334,7 +334,7 @@ interface Adder {
 class Calculator {
   public int excute(int num1, int num2, char op) {
     // java.util.function 에서 제공하는 IntBinaryOperator 인터페이스
-  	IntBinaryOperator adder = (a, b) -> a + b;
+    IntBinaryOperator adder = (a, b) -> a + b;
     if(op == '+') {
       return adder.applyAsInt(num1, num2);
     }
