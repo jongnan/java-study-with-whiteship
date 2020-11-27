@@ -44,8 +44,8 @@
   > 이 값은 부동 소수점 연산에 의해 Overflow가 나거나  또는 0으로 나누는 부동 소수점 연산으로 생성된다.
 
   ```java
-  float n   =  10.0f / 0;	//  Infinity
-  float n2  = -10.0f / 0;	// -Infinity
+  float n   =  10.0f / 0;		//  Infinity
+  float n2  = -10.0f / 0;		// -Infinity
   double n3 =  10.0d / 0.0f;	//  Infinity
   ```
 
