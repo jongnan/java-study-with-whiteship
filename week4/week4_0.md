@@ -65,7 +65,7 @@ Jupiter에서는 테스트와 확장된 기능을 제공하기 위해 여러가�
 | @TestInstance          | 테스트 인스턴스 생명주기를 구성하는데 사용                   |
 | @DisplayName           | 테스트 클래스 혹은 메소드에 대한 이름을 선언                 |
 | @DisplayNameGeneration | 테스트 클래스에 대한 Display name generator를 선언           |
-| @BeforeEach            | 현재 클래스에서 @Test, @RepeatedTest, @ParameterizedTest, @TestFactory가 적힌 **각각의**메소드들 보다 먼저 실행<br />(JUnit 4의 @Before와 동일) |
+| @BeforeEach            | 현재 클래스에서 @Test, @RepeatedTest, @ParameterizedTest, @TestFactory가 적힌 **각각의** 메소드들 보다 먼저 실행<br />(JUnit 4의 @Before와 동일) |
 | @AfterEach             | 현재 클래스에서 @Test, @RepeatedTest, @ParameterizedTest, @TestFactory가 적힌 **각각의** 메소드들 보다 나중에 실행<br />(JUnit 4의 @After와 동일) |
 | @BeforeAll             | 현재 클래스에서 @Test, @RepeatedTest, @ParameterizedTest, @TestFactory가 적힌 **모든**  메소드들 보다 먼저 실행<br />(JUnit 4의 @BeforeClass와 동일) |
 | @AfterAll              | 현재 클래스에서 @Test, @RepeatedTest, @ParameterizedTest, @TestFactory가 적힌 **모든** 메소드들 보다 나중에 실행<br />(JUnit 4의 @AfterClass와 동일) |
