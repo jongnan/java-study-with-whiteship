@@ -97,31 +97,31 @@ List<GHIssue> issueList = liveStudyRepo.getIssues(GHIssueState.ALL);
 private Map<String, Integer> takeAttendance() {
 	final int INITIAL_COUNT_NUM = 1;
 
-  // 출석 체크를 위한 HashMap -> <아이디, 출석 횟수>
+	// 출석 체크를 위한 HashMap -> <아이디, 출석 횟수>
 	Map<String, Integer> attendanceInfo = new HashMap<>();
 	try{
 		List<GHIssue> issueList = liveStudyRepo.getIssues(GHIssueState.ALL);
 
-    // 이슈 순회
+		// 이슈 순회
 		for(GHIssue issue : issueList) {
-      // 해당 이슈가 시작되지 않는 과제라면 제외
-      if(!isOngoingAssignment(issue.getLabels())) continue;
-      
-      // 이슈당 댓글 중복을 막기 위한 HashSet
+			// 해당 이슈가 시작되지 않는 과제라면 제외
+			if(!isOngoingAssignment(issue.getLabels())) continue;
+		
+			// 이슈당 댓글 중복을 막기 위한 HashSet
 			Set<String> curIssueUserList = new HashSet<>();
 
-      // 댓글 순회
+			// 댓글 순회
 			for(GHIssueComment comment : issue.getComments()) {
 				String userId = comment.getUser().getLogin();
         
-        // 레포의 오너는 제외
+				// 레포의 오너는 제외
 				if(userId.equals(REPO_OWNER_ID)) continue;
         
-        // 중복 제외
+				// 중복 제외
 				if(curIssueUserList.contains(userId)) continue;
-        curIssueUserList.add(userId);
+				curIssueUserList.add(userId);
 
-        // 출석 체크
+				// 출석 체크
 				if(attendanceInfo.containsKey(userId)) {
 					attendanceInfo.put(userId, attendanceInfo.get(userId) + 1);
 					continue;
@@ -205,103 +205,96 @@ public class LiveStudyDashboardTest {
 		void it_returns_a_user_attendance_count() {
 			try {
 				// Reflection
-				Method takeAttendance =
-          liveStudyDashboard.getClass().getDeclaredMethod("takeAttendance");
+				Method takeAttendance = liveStudyDashboard.getClass().getDeclaredMethod("takeAttendance");
                 
 				// 접근 허용
-        takeAttendance.setAccessible(true);
+        			takeAttendance.setAccessible(true);
         
-        // 메소드 실행
-        Map<String, Integer> attendanceInfo =
-          (Map<String, Integer>) takeAttendance.invoke(liveStudyDashboard);
+        			// 메소드 실행
+        			Map<String, Integer> attendanceInfo = (Map<String, Integer>) takeAttendance.invoke(liveStudyDashboard);
         
-        // 검증
-        assertEquals(attendanceInfo.get("jongnan"), 3);
+        			// 검증
+				assertEquals(attendanceInfo.get("jongnan"), 3);
 			} catch (NoSuchMethodException 
-               | IllegalAccessException 
-               | InvocationTargetException e) {
-        e.printStackTrace();
-      }
-    }
-  }
+               			| IllegalAccessException 
+               			| InvocationTargetException e) {
+        			e.printStackTrace();
+      			}
+    		}
+	}
 
 	@Nested
-  // 테스트의 중첩을 사용할 때, BeforeAll을 사용하기 위함
-  @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-  @DisplayName("과제 진행 여부 메소드는")
-  class Describe_is_ongoing_assignment {
-    List<GHIssue> issues;
-    Method isOngoingAssignment;
+  	// 테스트의 중첩을 사용할 때, BeforeAll을 사용하기 위함
+  	@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+  	@DisplayName("과제 진행 여부 메소드는")
+  	class Describe_is_ongoing_assignment {
+    		List<GHIssue> issues;
+    		Method isOngoingAssignment;
 
-    // 테스트 공통 로직
-    Boolean check_ongoing_assignment(int week) {
-      try {
-        // 메소드 실행
-        return (boolean) isOngoingAssignment.invoke(
-          liveStudyDashboard,
-          issues.get(week).getLabels());
-      } catch (IllegalAccessException | InvocationTargetException e) {
-        e.printStackTrace();
-      }
-      return null;
-    }
+    		// 테스트 공통 로직
+    		Boolean check_ongoing_assignment(int week) {
+      			try {
+        			// 메소드 실행
+        			return (boolean) isOngoingAssignment.invoke(liveStudyDashboard,issues.get(week).getLabels());
+      			} catch (IllegalAccessException | InvocationTargetException e) {
+        			e.printStackTrace();
+      			}
+      			return null;
+    		}
     
-    // 사전 작업
-    @BeforeAll
-    void prepare() {
-      try {
-        this.issues = liveStudyDashboard.liveStudyRepo.getIssues(GHIssueState.ALL);
+    		// 사전 작업
+    		@BeforeAll
+		void prepare() {
+			try {
+				this.issues = liveStudyDashboard.liveStudyRepo.getIssues(GHIssueState.ALL);
         
-        // Reflection
-        this.isOngoingAssignment = liveStudyDashboard
-          .getClass()
-          .getDeclaredMethod("isOngoingAssignment", Collection.class);
+				// Reflection
+        			this.isOngoingAssignment = liveStudyDashboard.getClass().getDeclaredMethod("isOngoingAssignment", Collection.class);
         
-        // 접근 허용
-        this.isOngoingAssignment.setAccessible(true);
-      }catch (IOException | NoSuchMethodException e) {
-        e.printStackTrace();
-      }
-    }
+				// 접근 허용
+				this.isOngoingAssignment.setAccessible(true);
+			}catch (IOException | NoSuchMethodException e) {
+				e.printStackTrace();
+      			}
+		}
 
-    @Nested
-    @DisplayName("1주차라면")
-    class Context_with_first_week {
-      final int FIRST_WEEK_IDX = 17;
-      @Test
-      @DisplayName("참을 리턴한다")
-      void it_return_true() {
-        // 검증
-        assertTrue(check_ongoing_assignment(FIRST_WEEK_IDX));
-      }
-    }
+		@Nested
+		@DisplayName("1주차라면")
+		class Context_with_first_week {
+			final int FIRST_WEEK_IDX = 17;
+			@Test
+			@DisplayName("참을 리턴한다")
+			void it_return_true() {
+				// 검증
+				assertTrue(check_ongoing_assignment(FIRST_WEEK_IDX));
+			}
+		}
 
-    @Nested
-    @DisplayName("2주차라면")
-    class Context_with_second_week {
-      final int SECOND_WEEK_IDX = 16;
-      @Test
-      @DisplayName("참을 리턴한다")
-      void it_return_true() {
-        // 검증
-        assertTrue(check_ongoing_assignment(SECOND_WEEK_IDX));
-      }
-    }
+		@Nested
+		@DisplayName("2주차라면")
+		class Context_with_second_week {
+			final int SECOND_WEEK_IDX = 16;
+			@Test
+			@DisplayName("참을 리턴한다")
+			void it_return_true() {
+				// 검증
+				assertTrue(check_ongoing_assignment(SECOND_WEEK_IDX));
+			}
+		}
 
-    @Nested
-    @DisplayName("18주차라면")
-    class Context_with_18th_week {
-      final int EIGHTEENTH_WEEK_IDX = 0;
-      @Test
-      @DisplayName("거짓을 리턴한다")
-      void it_return_false() {
-        // 검증
-        assertFalse(check_ongoing_assignment(EIGHTEENTH_WEEK_IDX));
-      }
-    }
-  }
+		@Nested
+		@DisplayName("18주차라면")
+		class Context_with_18th_week {
+			final int EIGHTEENTH_WEEK_IDX = 0;
+			@Test
+			@DisplayName("거짓을 리턴한다")
+			void it_return_false() {
+				// 검증
+				assertFalse(check_ongoing_assignment(EIGHTEENTH_WEEK_IDX));
+			}
+		}
+	}
 }
-
 ```
 
 위는 D-C-I 패턴을 적용하여 `takeAssignment`과 `isOngoingAssignment` 메소드를 테스팅 해본 것이다. 여기서 과제 진행 여부 확인을 테스트하는 작업의 경우, 사전 작업으로 Issue들을 가져오고 있다. 테스트를 돌려보면 아래와 같이 테스트가 중첩되어 한눈에 보기 편하게 나오는 것을 알 수 있다.
