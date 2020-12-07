@@ -307,8 +307,8 @@ public class LiveStudyDashboardTest {
 
 ## 코드
 
-* [LiveStudyDashboard 클래스](https://github.com/jongnan/Java_Study_With_Whiteship/blob/master/week4/Assignment_1/src/main/java/LiveStudyDashboard.java)
-* [LiveStudyDashboardTest 클래스](https://github.com/jongnan/Java_Study_With_Whiteship/blob/master/week4/Assignment_1/src/test/java/LiveStudyDashboardTest.java)
+* [LiveStudyDashboard 클래스](assignment_1/src/main/java/)
+* [LiveStudyDashboardTest 클래스](assignment_1/src/test/java/)
 
 <br>
 
