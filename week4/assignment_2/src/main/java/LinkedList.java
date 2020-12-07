@@ -51,6 +51,7 @@ public class LinkedList {
         }
 
         pre.setNext(cur.getNext());
+        cur.setNext(null);
         return cur;
     }
 
