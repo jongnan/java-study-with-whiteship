@@ -58,24 +58,24 @@
 
 ```java
 public class ListNode {
-    private int data;
-    private ListNode next;
+	private int data;
+    	private ListNode next;
 
-    ListNode(int data) {
-        this.data = data;
-    }
+    	ListNode(int data) {
+		this.data = data;
+    	}
 
-    public int getData() {
-        return this.data;
-    }
+	public int getData() {
+		return this.data;
+	}
 
-    public ListNode getNext() {
-        return this.next;
-    }
+	public ListNode getNext() {
+		return this.next;
+	}
 
-    public void setNext(ListNode nextNode) {
-        this.next = nextNode;
-    }
+	public void setNext(ListNode nextNode) {
+		this.next = nextNode;
+	}
 }
 ```
 
@@ -87,104 +87,104 @@ public class ListNode {
 
 ```java
 public class LinkedList {
-    private ListNode head;
-    private int size;
+	private ListNode head;
+	private int size;
 
-    LinkedList() {
-        this.head = null;
-        this.size = 0;
-    }
+	LinkedList() {
+		this.head = null;
+		this.size = 0;
+	}
 }
 ```
 
 `LinkedList`에서는 가장 맨 앞 노드만 가지고 있어도 되므로 인스턴스 변수로 `head`가 존재하고 `add`와 `remove` 메소드에서 `position`이 존재하기에 유효한 접근을 위해 `size`도 추가하였다.
 
-#### # add(ListNode nodeToAdd, int position)
+### # add(ListNode nodeToAdd, int position)
 
 삽입의 경우, 기본적으로 매개변수인 `position`이 유효한지 확인하고 해당 위치를 찾아가 그 사이에 새로운 노드(`nodeToAdd`)를 삽입한다.
 
 ```java
 public ListNode add(ListNode nodeToAdd, int position) {
-  // position의 유효성 체크를 위해 먼저 증감
+	// position의 유효성 체크를 위해 먼저 증감
 	this.size++;
 
-  // position 유효성 체크
-  if(validatePositionRange(position)) {
-		printPositionErr();
-		return null;
+	// position 유효성 체크
+	if(validatePositionRange(position)) {
+	printPositionErr();
+	return null;
 	}
 
-  // 해당 위치 찾기
+	// 해당 위치 찾기
 	ListNode pre = null, cur = this.head;
 	while(--position > 0) {
 		pre = cur;
 		cur = cur.getNext();
 	}
 
-  // 삽입 위치가 맨 앞일 경우
+  	// 삽입 위치가 맨 앞일 경우
 	if(pre == null) {
 		nodeToAdd.setNext(cur);
 		this.head = nodeToAdd;
 		return this.head;
 	}
 
-  // 그 이외에 경우
-  pre.setNext(nodeToAdd);
+  	// 그 이외에 경우
+  	pre.setNext(nodeToAdd);
 	nodeToAdd.setNext(cur);
 	return nodeToAdd;
 }
 ```
-
-#### # remove(int positionToRemove)
+<br>
+### # remove(int positionToRemove)
 
 `remove` 또한, 위치로 찾기 때문에 유효성을 체크한다. 이후 `add` 똑같이 위치를 찾고 해당 위치의 노드를 삭제한다.
 
 ```java
 public ListNode remove(int positionToRemove) {
-  // positionToRemove 유효성 체크
+	// positionToRemove 유효성 체크
 	if(validatePositionRange(positionToRemove)) {
 		printPositionErr();
 		return null;
 	}
 
-  // 해당 위치 찾기
+	// 해당 위치 찾기
 	ListNode pre = null, cur = this.head;
 	while(--positionToRemove > 0) {
 		pre = cur;
 		cur = cur.getNext();
 	}
 
-  // 연결 리스트의 크기 감소
-  this.size--;
+	// 연결 리스트의 크기 감소
+	this.size--;
 
-  // 삭제 위치가 맨 앞일 경우
+	// 삭제 위치가 맨 앞일 경우
 	if(pre == null) {
 		this.head = cur.getNext();
 		return cur;
 	}
 
-  // 그 이외의 경우
+	// 그 이외의 경우
 	pre.setNext(cur.getNext());
 	return cur;
 }
 ```
-
-#### # contains(ListNode nodeToCheck)
+<br>
+### # contains(ListNode nodeToCheck)
 
 `contains`의 경우 연결 리스트를 순회하면서 찾는 노드가 존재하는지 확인한다. `data`로 판단하면 중복된 노드가 존재할 수 있으므로 `ListNode` 객체로 판단한다.
 
 ```java
 public boolean contains(ListNode nodeToCheck) {
-  // 순회
+	// 순회
 	ListNode cur = this.head;
 	while(cur != null) {
-    // 같은 ListNode라면
+		// 같은 ListNode라면
 		if(cur == nodeToCheck) {
 			return true;
 		}
 		cur = cur.getNext();
 	}
-  // 끝까지 체크하고도 같은 ListNode가 없다면
+	// 끝까지 체크하고도 같은 ListNode가 없다면
 	return false;
 }
 ```
@@ -227,65 +227,65 @@ class Describe_add{
 			@Test
 			@DisplayName("리턴값이 head와 같다")
 			void it_returns_list_node_same_head() {
-        try {
-          LinkedList linkedList = new LinkedList();
-          ListNode frontNode = linkedList.add(new ListNode(FIRST_NODE_VALUE), FIRST_POSITION_INDEX);
-          Field headField = linkedList.getClass().getDeclaredField("head");
-          headField.setAccessible(true);
-          assertEquals(frontNode, headField.get(linkedList));
-        } catch (IllegalAccessException | NoSuchFieldException e) {
-          e.printStackTrace();
-        }
-      }
-    }
+        			try {
+          				LinkedList linkedList = new LinkedList();
+          				ListNode frontNode = linkedList.add(new ListNode(FIRST_NODE_VALUE), FIRST_POSITION_INDEX);
+          				Field headField = linkedList.getClass().getDeclaredField("head");
+          				headField.setAccessible(true);
+          				assertEquals(frontNode, headField.get(linkedList));
+        			} catch (IllegalAccessException | NoSuchFieldException e) {
+          				e.printStackTrace();
+        			}
+			}
+    	}
 
-    @Nested
-    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-    @DisplayName("첫번째 노드와 두번째 노드 사이에 넣을 경우")
-    class Sub_context_with_between_first_second {
-      final int FIRST_NODE_VALUE = 3;
-      final int SECOND_NODE_VALUE = 1;
-      final int BETWEEN_NODE_VALUE = 10;
-      final int FIRST_POSITION_INDEX = 1;
-      final int SECOND_POSITION_INDEX = 2;
+	@Nested
+    	@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    	@DisplayName("첫번째 노드와 두번째 노드 사이에 넣을 경우")
+    	class Sub_context_with_between_first_second {
+      		final int FIRST_NODE_VALUE = 3;
+      		final int SECOND_NODE_VALUE = 1;
+      		final int BETWEEN_NODE_VALUE = 10;
+ 		final int FIRST_POSITION_INDEX = 1;
+      		final int SECOND_POSITION_INDEX = 2;
 
-      LinkedList linkedList;
-      ListNode first, second, between, head;
+      		LinkedList linkedList;
+      		ListNode first, second, between, head;
 
-      @BeforeAll
-      void prepare_add_test() {
-        try {
-          linkedList = new LinkedList();
-          first = linkedList.add(new ListNode(FIRST_NODE_VALUE), FIRST_POSITION_INDEX);
-          second = linkedList.add(new ListNode(SECOND_NODE_VALUE), SECOND_POSITION_INDEX);
-          between = linkedList.add(new ListNode(BETWEEN_NODE_VALUE), SECOND_POSITION_INDEX);
+      		@BeforeAll
+      		void prepare_add_test() {
+        		try {
+          			linkedList = new LinkedList();
+          			first = linkedList.add(new ListNode(FIRST_NODE_VALUE), FIRST_POSITION_INDEX);
+          			second = linkedList.add(new ListNode(SECOND_NODE_VALUE), SECOND_POSITION_INDEX);
+          			between = linkedList.add(new ListNode(BETWEEN_NODE_VALUE), SECOND_POSITION_INDEX);
 
 
-          Field headField = linkedList.getClass().getDeclaredField("head");
-          headField.setAccessible(true);
-          head = (ListNode) headField.get(linkedList);
-        } catch (IllegalAccessException | NoSuchFieldException e) {
-          e.printStackTrace();
-        }
-      }
+          			Field headField = linkedList.getClass().getDeclaredField("head");
+          			headField.setAccessible(true);
+          			head = (ListNode) headField.get(linkedList);
+        			} catch (IllegalAccessException | NoSuchFieldException e) {
+          				e.printStackTrace();
+        			}
+			}
 
-      @Test
-      @DisplayName("리턴 값이 head의 다음 노드와 같다")
-      void it_returns_same_head_next() {
-        assertAll(
-          () -> assertEquals(head, first),
-          () -> assertNotEquals(second, head.getNext()),
-          () -> assertEquals(between, head.getNext())
-        );
-      }
+      			@Test
+      			@DisplayName("리턴 값이 head의 다음 노드와 같다")
+      			void it_returns_same_head_next() {
+        			assertAll(
+          				() -> assertEquals(head, first),
+          				() -> assertNotEquals(second, head.getNext()),
+          				() -> assertEquals(between, head.getNext())
+        			);
+      			}
 
-      @Test
-      @DisplayName("리턴 값의 다음 노드는 두번째 삽입한 노드와 같다")
-      void it_returns_same_second_add_node() {
-        assertEquals(between.getNext(), second);
-      }
-    }
-  }
+      			@Test
+      			@DisplayName("리턴 값의 다음 노드는 두번째 삽입한 노드와 같다")
+      			void it_returns_same_second_add_node() {
+        			assertEquals(between.getNext(), second);
+      			}
+    		}
+ 	}
 }
 ```
 
@@ -303,104 +303,104 @@ class Describe_add{
 @Nested
 @DisplayName("remove 메소드는")
 class Describe_remove {
-  @Nested
-  @DisplayName("잘못된 position이 주어졌다면")
-  class Context_with_invalid_position {
-    final int FIRST_NODE_VALUE = 10;
-    final int INVALID_POSITION_INDEX = -1;
+  	@Nested
+  	@DisplayName("잘못된 position이 주어졌다면")
+ 	class Context_with_invalid_position {
+    		final int FIRST_NODE_VALUE = 10;
+    		final int INVALID_POSITION_INDEX = -1;
 
-    @Test
-    @DisplayName("null을 리턴한다")
-    void it_returns_null() {
-      LinkedList linkedList = new LinkedList();
-      ListNode addedNode = linkedList.add(new ListNode(FIRST_NODE_VALUE), INVALID_POSITION_INDEX);
-      assertNull(addedNode);
-    }
-  }
+    		@Test
+    		@DisplayName("null을 리턴한다")
+    		void it_returns_null() {
+      			LinkedList linkedList = new LinkedList();
+      			ListNode addedNode = linkedList.add(new ListNode(FIRST_NODE_VALUE), INVALID_POSITION_INDEX);
+      			assertNull(addedNode);
+    		}
+  	}
 
-  @Nested
-  @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-  @DisplayName("유효한 position이 주어졌다면")
-  class Context_with_valid_position {
-    final int FIRST_NODE_VALUE = 3;
-    final int SECOND_NODE_VALUE = 1;
-    final int THIRD_NODE_VALUE = 10;
-    final int FIRST_POSITION_INDEX = 1;
-    final int SECOND_POSITION_INDEX = 2;
-    final int THIRD_POSITION_INDEX = 3;
+  	@Nested
+  	@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+  	@DisplayName("유효한 position이 주어졌다면")
+  	class Context_with_valid_position {
+    		final int FIRST_NODE_VALUE = 3;
+    		final int SECOND_NODE_VALUE = 1;
+    		final int THIRD_NODE_VALUE = 10;
+    		final int FIRST_POSITION_INDEX = 1;
+    		final int SECOND_POSITION_INDEX = 2;
+    		final int THIRD_POSITION_INDEX = 3;
 
-    @Nested
-    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-    @DisplayName("두개의 노드가 존재하고 맨 앞을 삭제했을 경우")
-    class Sub_context_with_front_remove {
-      ListNode first, second, removed, head;
+    		@Nested
+    		@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    		@DisplayName("두개의 노드가 존재하고 맨 앞을 삭제했을 경우")
+    		class Sub_context_with_front_remove {
+      			ListNode first, second, removed, head;
 
-      @BeforeAll
-      void prepare_remove_front_node() {
-        try {
-          LinkedList linkedList = new LinkedList();
-          first = linkedList.add(new ListNode(FIRST_NODE_VALUE), FIRST_POSITION_INDEX);
-          second = linkedList.add(new ListNode(SECOND_NODE_VALUE), SECOND_POSITION_INDEX);
-          removed = linkedList.remove(FIRST_POSITION_INDEX);
+      			@BeforeAll
+      			void prepare_remove_front_node() {
+        			try {
+          				LinkedList linkedList = new LinkedList();
+          				first = linkedList.add(new ListNode(FIRST_NODE_VALUE), FIRST_POSITION_INDEX);
+          				second = linkedList.add(new ListNode(SECOND_NODE_VALUE), SECOND_POSITION_INDEX);
+          				removed = linkedList.remove(FIRST_POSITION_INDEX);
 
-          Field headField = linkedList.getClass().getDeclaredField("head");
-          headField.setAccessible(true);
-          head = (ListNode) headField.get(linkedList);
-        } catch (IllegalAccessException | NoSuchFieldException e) {
-          e.printStackTrace();
-        }
-      }
+          				Field headField = linkedList.getClass().getDeclaredField("head");
+          				headField.setAccessible(true);
+          				head = (ListNode) headField.get(linkedList);
+        			} catch (IllegalAccessException | NoSuchFieldException e) {
+          				e.printStackTrace();
+				}
+      			}
 
-      @Test
-      @DisplayName("리턴 값은 첫번째 삽입한 노드와 같다")
-      void it_returns_same_first_add_node() {
-        assertEquals(first, removed);
-      }
+      			@Test
+      			@DisplayName("리턴 값은 첫번째 삽입한 노드와 같다")
+      			void it_returns_same_first_add_node() {
+        			assertEquals(first, removed);
+      			}
 
-      @Test
-      @DisplayName("두번째 삽입한 노드와 head와 같다")
-      void it_second_add_node_same_head() {
-        assertEquals(second, head);
-      }
-    }
+      			@Test
+      			@DisplayName("두번째 삽입한 노드와 head와 같다")
+      			void it_second_add_node_same_head() {
+        			assertEquals(second, head);
+      			}
+    		}
 
-    @Nested
-    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-    @DisplayName("세개의 노드가 존재하고 중간을 삭제했을 경우")
-    class Sub_context_with_between_first_to_second_remove {
-      ListNode first, second, third, removed;
+    		@Nested
+    		@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+    		@DisplayName("세개의 노드가 존재하고 중간을 삭제했을 경우")
+    		class Sub_context_with_between_first_to_second_remove {
+      			ListNode first, second, third, removed;
 
-      @BeforeAll
-      void prepare_remove_between_node() {
-        LinkedList linkedList = new LinkedList();
-        first = linkedList.add(new ListNode(FIRST_NODE_VALUE), FIRST_POSITION_INDEX);
-        second = linkedList.add(new ListNode(SECOND_NODE_VALUE), SECOND_POSITION_INDEX);
-        third = linkedList.add(new ListNode(THIRD_NODE_VALUE), THIRD_POSITION_INDEX);
-        removed = linkedList.remove(SECOND_POSITION_INDEX);
-      }
+      			@BeforeAll
+      			void prepare_remove_between_node() {
+        			LinkedList linkedList = new LinkedList();
+        			first = linkedList.add(new ListNode(FIRST_NODE_VALUE), FIRST_POSITION_INDEX);
+        			second = linkedList.add(new ListNode(SECOND_NODE_VALUE), SECOND_POSITION_INDEX);
+        			third = linkedList.add(new ListNode(THIRD_NODE_VALUE), THIRD_POSITION_INDEX);
+        			removed = linkedList.remove(SECOND_POSITION_INDEX);
+      			}
 
-      @Test
-      @DisplayName("리턴 값은 두번째 삽입 노드와 같다")
-      void it_return_second_node() {
-        assertEquals(removed, second);
-      }
+      			@Test
+      			@DisplayName("리턴 값은 두번째 삽입 노드와 같다")
+      			void it_return_second_node() {
+        			assertEquals(removed, second);
+      			}
 
-      @Test
-      @DisplayName("리턴(삭제된) 값은 더 이상 다음 노드를 가지지 않는다")
-      void it_returns_remove_next_node() {
-        assertNotEquals(removed.getNext(), third);
-      }
+      			@Test
+      			@DisplayName("리턴(삭제된) 값은 더 이상 다음 노드를 가지지 않는다")
+      			void it_returns_remove_next_node() {
+        			assertNotEquals(removed.getNext(), third);
+      			}
 
-      @Test
-      @DisplayName("첫번째 삽입 노드의 다음은 세번째 삽입 노드와 같다")
-      void it_first_node_same_second_node() {
-        assertAll(
-          () -> assertEquals(first.getNext(), third),
-          () -> assertNotEquals(first.getNext(), second)
-        );
-      }
-    }
-  }
+      			@Test
+      			@DisplayName("첫번째 삽입 노드의 다음은 세번째 삽입 노드와 같다")
+      			void it_first_node_same_second_node() {
+        			assertAll(
+          				() -> assertEquals(first.getNext(), third),
+          				() -> assertNotEquals(first.getNext(), second)
+        			);
+      			}
+    		}
+  	}
 }
 ```
 
@@ -419,48 +419,48 @@ class Describe_remove {
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @DisplayName("contains 메소드는")
 class Describe_contains {
-  final int FIRST_NODE_VALUE = 3;
-  final int SECOND_NODE_VALUE = 1;
-  final int THIRD_NODE_VALUE = 10;
-  final int NOT_CONTAINS_NODE_VALUE = -3;
-  final int FIRST_POSITION_INDEX = 1;
-  final int SECOND_POSITION_INDEX = 2;
-  final int THIRD_POSITION_INDEX = 3;
+  	final int FIRST_NODE_VALUE = 3;
+  	final int SECOND_NODE_VALUE = 1;
+  	final int THIRD_NODE_VALUE = 10;
+  	final int NOT_CONTAINS_NODE_VALUE = -3;
+  	final int FIRST_POSITION_INDEX = 1;
+  	final int SECOND_POSITION_INDEX = 2;
+  	final int THIRD_POSITION_INDEX = 3;
 
-  LinkedList linkedList;
-  ListNode first, second, third, contains, notContains;
+  	LinkedList linkedList;
+  	ListNode first, second, third, contains, notContains;
 
-  @BeforeAll
-  void prepare_contains_test() {
-    linkedList = new LinkedList();
-    first = linkedList.add(new ListNode(FIRST_NODE_VALUE), FIRST_POSITION_INDEX);
-    second = linkedList.add(new ListNode(SECOND_NODE_VALUE), SECOND_POSITION_INDEX);
-    third = linkedList.add(new ListNode(THIRD_NODE_VALUE), THIRD_POSITION_INDEX);
-    contains = first;
-    notContains = new ListNode(NOT_CONTAINS_NODE_VALUE);
-  }
+  	@BeforeAll
+  	void prepare_contains_test() {
+    		linkedList = new LinkedList();
+    		first = linkedList.add(new ListNode(FIRST_NODE_VALUE), FIRST_POSITION_INDEX);
+    		second = linkedList.add(new ListNode(SECOND_NODE_VALUE), SECOND_POSITION_INDEX);
+    		third = linkedList.add(new ListNode(THIRD_NODE_VALUE), THIRD_POSITION_INDEX);
+    		contains = first;
+    		notContains = new ListNode(NOT_CONTAINS_NODE_VALUE);
+  	}
 
-  @Nested
-  @DisplayName("연결 리스트에 존재하는 노드가 주어질 경우")
-  class Context_with_contains {
-    @Test
-    @DisplayName("참을 리턴한다")
-    void it_returns_true() {
-      boolean isContains = linkedList.contains(contains);
-      assertTrue(isContains);
-    }
-  }
+  	@Nested
+  	@DisplayName("연결 리스트에 존재하는 노드가 주어질 경우")
+  	class Context_with_contains {
+    		@Test
+    		@DisplayName("참을 리턴한다")
+    		void it_returns_true() {
+      			boolean isContains = linkedList.contains(contains);
+      			assertTrue(isContains);
+    		}
+  	}
 
-  @Nested
-  @DisplayName("연결 리스트에 존재하지 않는 노드가 주어질 경우")
-  class Context_with_not_contains {
-    @Test
-    @DisplayName("거짓을 리턴한다")
-    void it_returns_false() {
-      boolean isNotContains = linkedList.contains(notContains);
-      assertFalse(isNotContains);
-    }
-  }
+  	@Nested
+  	@DisplayName("연결 리스트에 존재하지 않는 노드가 주어질 경우")
+  	class Context_with_not_contains {
+    		@Test
+    		@DisplayName("거짓을 리턴한다")
+    		void it_returns_false() {
+      			boolean isNotContains = linkedList.contains(notContains);
+      			assertFalse(isNotContains);
+    		}
+  	}
 }
 ```
 
