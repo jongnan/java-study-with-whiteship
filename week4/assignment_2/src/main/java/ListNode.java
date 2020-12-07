@@ -10,7 +10,7 @@ public class ListNode {
         return this.data;
     }
 
-    public ListNode getListNode() {
+    public ListNode getNext() {
         return this.next;
     }
 
