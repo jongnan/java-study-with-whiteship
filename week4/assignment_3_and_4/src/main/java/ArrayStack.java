@@ -22,15 +22,14 @@ public class ArrayStack {
         if (isFull()) {
             throw new RuntimeException("Stack is full...");
         }
-        this.store[this.size] = data;
-        this.size++;
+        this.store[this.size++] = data;
     }
 
     public int pop() {
         if(isEmpty()) {
             throw new RuntimeException("Stack is Empty...");
         }
-        return this.store[this.size--];
+        return this.store[--this.size];
     }
 
     private boolean isEmpty() {
