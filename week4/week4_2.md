@@ -99,7 +99,7 @@ public class LinkedList {
 
 `LinkedList`에서는 가장 맨 앞 노드만 가지고 있어도 되므로 인스턴스 변수로 `head`가 존재하고 `add`와 `remove` 메소드에서 `position`이 존재하기에 유효한 접근을 위해 `size`도 추가하였다.
 
-### # add(ListNode nodeToAdd, int position)
+### # add
 
 삽입의 경우, 기본적으로 매개변수인 `position`이 유효한지 확인하고 해당 위치를 찾아가 그 사이에 새로운 노드(`nodeToAdd`)를 삽입한다.
 
@@ -135,7 +135,7 @@ public ListNode add(ListNode nodeToAdd, int position) {
 }
 ```
 <br>
-### # remove(int positionToRemove)
+### # remove
 
 `remove` 또한, 위치로 찾기 때문에 유효성을 체크한다. 이후 `add` 똑같이 위치를 찾고 해당 위치의 노드를 삭제한다.
 
@@ -169,7 +169,7 @@ public ListNode remove(int positionToRemove) {
 }
 ```
 <br>
-### # contains(ListNode nodeToCheck)
+### # contains
 
 `contains`의 경우 연결 리스트를 순회하면서 찾는 노드가 존재하는지 확인한다. `data`로 판단하면 중복된 노드가 존재할 수 있으므로 `ListNode` 객체로 판단한다.
 
