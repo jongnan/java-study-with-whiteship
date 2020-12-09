@@ -81,8 +81,6 @@ public class ListNode {
 
 중간에 값이 삽입/삭제/존재 여부만 알면 되므로 `data`는 변하지 않으므로 setter 함수는 만들지 않는다.
 
-<br>
-
 ### LinkedList
 
 ```java
@@ -134,7 +132,6 @@ public ListNode add(ListNode nodeToAdd, int position) {
 	return nodeToAdd;
 }
 ```
-<br>
 ### # remove
 
 `remove` 또한, 위치로 찾기 때문에 유효성을 체크한다. 이후 `add` 똑같이 위치를 찾고 해당 위치의 노드를 삭제한다.
@@ -168,7 +165,6 @@ public ListNode remove(int positionToRemove) {
 	return cur;
 }
 ```
-<br>
 ### # contains
 
 `contains`의 경우 연결 리스트를 순회하면서 찾는 노드가 존재하는지 확인한다. `data`로 판단하면 중복된 노드가 존재할 수 있으므로 `ListNode` 객체로 판단한다.
