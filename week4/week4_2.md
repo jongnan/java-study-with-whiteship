@@ -108,8 +108,8 @@ public ListNode add(ListNode nodeToAdd, int position) {
 
 	// position 유효성 체크
 	if(validatePositionRange(position)) {
-	printPositionErr();
-	return null;
+		printPositionErr();
+		return null;
 	}
 
 	// 해당 위치 찾기
@@ -291,8 +291,6 @@ class Describe_add{
 
 <img src="image/ass_2_add_test.png">
 
-<br>
-
 ### # remove
 
 ```java
@@ -405,8 +403,6 @@ class Describe_remove {
 #### 결과
 
 <img src="image/ass_2_remove_test.png">
-
-<br>
 
 ### # contains
 
