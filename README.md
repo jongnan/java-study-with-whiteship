@@ -32,4 +32,5 @@
 ### # 5주 차
 
 * [클래스](week5/week5.md)
+* [BinaryTree 구현](week5/week5_1.md)
 
