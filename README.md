@@ -34,3 +34,7 @@
 * [클래스](week5/week5.md)
 * [BinaryTree 구현](week5/week5_1.md)
 
+### # 6주 차
+
+* [상속](week6/week6.md)
+
