@@ -55,7 +55,7 @@ class K5 extends Car {
 ```java
 K5 myCar = new K5();
 Car parentType_K5 = new K5();
-K5 childType_K5 = new Car();		//error
+K5 childType_K5 = new Car(); //error
 ```
 
 자바에서는 상속 받은 관계를 `IS-A` 관계라고 말하는데, `K5는 자동차이다.(K5 is a Car)` 라고 말할 수 있는 관계가 바로 `IS-A` 관계이다. 자동차가 더 큰 범주이기 때문에 해당 관계가 성립하지만, 그 반대인 `Car is a K5`는 성립이 불가능하다. 따라서 위에 3번째 줄과 같이 범주가 큰 상위 객체를 하위 데이터 타입으로 지정할 수 없는 것이다.
@@ -76,7 +76,7 @@ K5 friendCar = (K5)myCar;
 하지만 이도 완벽하게 오류가 안난다고 할 수 없다. 만약 `myCar`가 런타임에 다른 하위 클래스로 캐스팅이 될 수 있는 가능성이 있기 때문이다. 이를 막기 위해서 조건문을 다는 것이 하나의 방법이다.
 
 ```java
-if(myCar instanceof K5) {	// instanceof 키워드를 사용하여 특정 객체인지 판별이 가능
+if(myCar instanceof K5) {  // instanceof 키워드를 사용하여 특정 객체인지 판별이 가능
   K5 friendCar = (K5)myCar
 }
 ```
@@ -177,8 +177,8 @@ class User extends Human {
   String name;
   
   User(String name) {
-    this.name = name;				// 인스턴스 변수와 내부 변수의 구분
-    super.name = this.name;	// 상위 클래스와 하위 클래스의 구분
+    this.name = name;       // 인스턴스 변수와 내부 변수의 구분
+    super.name = this.name; // 상위 클래스와 하위 클래스의 구분
   }
 }
 ```
@@ -211,7 +211,7 @@ class Child extends Parent{
 ```java
 class Parent {
   int num;
-  Parent() {} 			// 1번 방법 : 컴파일러가 자동으로 상위 클래스의 생성자를 호출
+  Parent() {}       // 1번 방법 : 컴파일러가 자동으로 상위 클래스의 생성자를 호출
   Parent(int num) {
     this.num = num;
   } 
@@ -219,7 +219,7 @@ class Parent {
 
 class Child extends Parent{
   Child() {
-    super(5);				// 2번 방법 : 작성자가 임의적으로 상위 클래스의 생성자를 호출
+    super(5);       // 2번 방법 : 작성자가 임의적으로 상위 클래스의 생성자를 호출
   }
 }
 ```
