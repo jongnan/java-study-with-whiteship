@@ -1,4 +1,4 @@
-<img src="image/java.png">
+<p align="center"><img src="image/java.png" width="500px"></p>
 
 # Java Study
 
@@ -38,3 +38,6 @@
 
 * [상속](week6/week6.md)
 
+### # 7주차
+
+* [패키지](week7/week7.md)
