@@ -172,7 +172,7 @@ java -classpath ".:lib" MyClass
 
 * public
 
-  > 어떤 클래스에서 접근 가능
+  > 아무 클래스에서나 접근 가능
 
 * protected
 
@@ -180,7 +180,8 @@ java -classpath ".:lib" MyClass
 
 * default(no modifier)
 
-  > 접근 지시자를 별도로 사용하지 않으면 해당 패키지 내에서만 접근이 가능
+  > 해당 패키지 내에서만 접근이 가능  
+  > 별도의 접근 지시자 사용 X
 
 * private
 
