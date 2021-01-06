@@ -3,6 +3,7 @@
 ### 📖목표
 
 > 자바의 인터페이스에 대해 학습하여라.
+<br>
 
 ## 인터페이스란?
 
@@ -18,9 +19,9 @@ Java에서 인터페이스는 클래스와 같이 레퍼런스 타입에 속하�
 
 ```java
 interface 인터페이스_이름 {
-  int a = 10;						// -> public static final int a = 10;
-  void 메서드_A(매개변수);	 // -> public abstract void 메서드_A(매개변수);
-  int 메서드_B();				 // -> public abstract int 메서드_B();
+  int a = 10;		// -> public static final int a = 10;
+  void 메서드_A(매개변수);	// -> public abstract void 메서드_A(매개변수);
+  int 메서드_B();		// -> public abstract int 메서드_B();
 }
 ```
 
@@ -62,7 +63,7 @@ interface Human {
 class User implements Human {
   @Override
   public void say() {
-		System.out.println("Hi!")
+    System.out.println("Hi!")
   }
 }
 ```
@@ -72,7 +73,7 @@ class User implements Human {
 ```java
 class App {
   public static void main(String[] args) {
-  	Human jongnan = new User();
+    Human jongnan = new User();
     jongnan.say();
   }
 }
@@ -146,7 +147,7 @@ class User implements Eng, Kor {
 class User implements Eng, Kor {
   @Override
   public void say() {
-		Eng.super.say();
+    Eng.super.say();
   }
 }
 ```
@@ -184,7 +185,7 @@ class App {
   public static void main(String[] args) {
     User kor = new Korean();
     String userType = User.getType();
-    String korType = kor.getType();		// 에러발생
+    String korType = kor.getType();	// 에러발생
   }
 }
 ```
@@ -199,7 +200,7 @@ Java 9부터 **중복적인 코드를 제거하고 캡슐화를 위해** private
 
 ``` java
 interface User {
-	default void walk() {
+  default void walk() {
     printMove();
   }
   
