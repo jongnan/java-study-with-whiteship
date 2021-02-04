@@ -56,7 +56,7 @@
 
 ### # 11주 차
 
-* [Enum](week11/wee11.md)
+* [Enum](week11/week11.md)
 
 ### # 12주 차
 
