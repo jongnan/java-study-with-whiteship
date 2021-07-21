@@ -315,45 +315,52 @@ class SharedObject {
 
 ```java
 public class Main {
+    // 공유 자원
+    public static Object o1 = new Object();
+    public static Object o2 = new Object();
+    
     public static void main(String[] args) {
         Object o1 = new Object();
         Object o2 = new Object();
 
       	// t1은 o1을 점유하고 있는 상태에서 o2를 요구
-        Thread t1 = new Thread(new DeadLockThread(o1, o2, "Thread1"));
-      	// t2는 o2를 점유하고 있는 상태에서 o1을 요구
-        Thread t2 = new Thread(new DeadLockThread(o2, o1, "Thread2"));
+        Thread t1 = new Thread(() -> {
+            // o1을 먼저 선점하고 있음
+        	synchronized (o1) {
+            	System.out.println("Thread1 holding : " + o1);
+            	try {
+                	Thread.sleep(1000);
+                	System.out.println("Thread1 waiting : " + o2);
+              		// 추가적으로 o2를 요청
+                	synchronized (o2) {
+                    	System.out.println("Thread1 holding : " + o2);
+                	}
+            	} catch (InterruptedException e) {
+                	e.printStackTrace();
+            	}
+        	}
+        });
+      	
+        // t2는 o2를 점유하고 있는 상태에서 o1을 요구
+        Thread t2 = new Thread(() -> {
+       		// o2을 먼저 선점하고 있음
+        	synchronized (o2) {
+            	System.out.println("Thread2 holding : " + o2);
+            	try {
+                	Thread.sleep(1000);
+                	System.out.println("Thread2 waiting : " + o1);
+              		// 추가적으로 o1를 요청
+                	synchronized (o1) {
+                    	System.out.println("Thread2 holding : " + o1);
+                	}
+            	} catch (InterruptedException e) {
+                	e.printStackTrace();
+            	}
+        	}
+        });
 
         t1.start();
         t2.start();
-    }
-}
-
-class DeadLockThread extends Thread {
-    Object o1, o2;
-
-    DeadLockThread(Object o1, Object o2, String name) {
-        this.o1 = o1;
-        this.o2 = o2;
-        this.setName(name);
-    }
-
-    @Override
-    public void run() {
-      	// o1을 먼저 선점하고 있음
-        synchronized (this.o1) {
-            System.out.println(this.getName() + " holding : " + this.o1);
-            try {
-                Thread.sleep(1000);
-                System.out.println(this.getName() + " waiting : " + this.o2);
-              	// 추가적으로 o2를 요청
-                synchronized (this.o2) {
-                    System.out.println(this.getName() + " holding : " + this.o2);
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
     }
 }
 ```
